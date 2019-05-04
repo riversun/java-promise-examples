@@ -7,6 +7,18 @@ It is licensed under [MIT](https://opensource.org/licenses/MIT).
 
 # Java Promise examples
 
+## Dependency
+
+**Maven**
+
+```xml
+<dependency>
+  <groupId>org.riversun</groupId>
+  <artifactId>java-promise</artifactId>
+  <version>1.1.0</version>
+</dependency>
+```
+
 ## Chain with then(new Promise(Func))
 
 ```Java
