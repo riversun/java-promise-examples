@@ -3,8 +3,8 @@ package com.examples;
 import org.riversun.promise.Promise;
 
 /**
- * "java-promise"(https://github.com/riversun/java-promise)サンプル
- * then(new Promise(Func))でチェインする
+ * Examples for "java-promise"(https://github.com/riversun/java-promise)
+ * chain with then(new Promise(Func))
  */
 public class Example01 {
 
@@ -21,7 +21,7 @@ public class Example01 {
                     System.out.println(data);
                     action.resolve();
                 }))
-                .start();// 非同期処理開始
+                .start();// start asynchronous operations
         System.out.println("Promise in Java");
     }
 }

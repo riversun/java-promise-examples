@@ -4,8 +4,8 @@ import org.riversun.promise.Func;
 import org.riversun.promise.Promise;
 
 /**
- * "java-promise"(https://github.com/riversun/java-promise)サンプル
- * Promise.alwaysはrejectもresolveも両方受け取れる
+ * Examples for "java-promise"(https://github.com/riversun/java-promise)
+ * Promise.always can receive both "reject" and "resolve"
  */
 public class Example30 {
 
@@ -19,7 +19,7 @@ public class Example30 {
         };
         Promise.resolve()
                 .then(function1)
-                .always(function2)// ステータスが"fulfilled"でも"rejected"でも実行される
-                .start();
+                .always(function2)// Execute either "fulfilled" or "rejected"
+                .start();// start asynchronous operations
     }
 }

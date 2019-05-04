@@ -6,9 +6,10 @@ import java.util.concurrent.Executors;
 
 import org.riversun.promise.Func;
 import org.riversun.promise.Promise;
+
 /**
- * "java-promise"(https://github.com/riversun/java-promise)サンプル
- * Promise.allで並列実行するときに、自前のExecutorを指定する
+ * Examples for "java-promise"(https://github.com/riversun/java-promise)
+ * Specify your ExecutorService when doing concurrent operation with Promise.all
  */
 public class Example41 {
     @SuppressWarnings("unchecked")
@@ -16,45 +17,52 @@ public class Example41 {
 
         final ExecutorService myExecutor = Executors.newFixedThreadPool(2);
 
-        // 非同期処理１
+        // Asynchronous operation 1
         Func function1 = (action, data) -> {
             System.out.println("No.1 " + Thread.currentThread());
             new Thread(() -> {
-                Promise.sleep(1000);System.out.println("func1 running");action.resolve("func1-result");
+                Promise.sleep(1000);
+                System.out.println("func1 running");
+                action.resolve("func1-result");
             }).start();
         };
 
-        // 非同期処理２
+        // Asynchronous operation 2
         Func function2 = (action, data) -> {
             System.out.println("No.2 " + Thread.currentThread());
             new Thread(() -> {
-                Promise.sleep(500);System.out.println("func2 running");action.resolve("func2-result");
+                Promise.sleep(500);
+                System.out.println("func2 running");
+                action.resolve("func2-result");
             }).start();
         };
 
-        // 非同期処理３
+        // Asynchronous operation 3
         Func function3 = (action, data) -> {
             System.out.println("No.3 " + Thread.currentThread());
             new Thread(() -> {
-                Promise.sleep(100);System.out.println("func3 running");action.resolve("func3-result");
+                Promise.sleep(100);
+                System.out.println("func3 running");
+                action.resolve("func3-result");
             }).start();
         };
-        
-        // 最後に結果を受け取る処理
+        // Operation to receive final result
         Func function4 = (action, data) -> {
-            System.out.println("No.4 final " + Thread.currentThread());
-            System.out.println("結果を受け取りました");
+            System.out.println("No.4 " + Thread.currentThread());
+            System.out.println("Received the final result.");
             List<Object> resultList = (List<Object>) data;
             for (int i = 0; i < resultList.size(); i++) {
                 Object result = resultList.get(i);
-                System.out.println("非同期処理" + (i + 1) + "の結果は " + result);
+                System.out.println("The result of async operation" + (i + 1) + " is " + result);
             }
+
             myExecutor.shutdown();
             action.resolve();
         };
 
         Promise.all(myExecutor, function1, function2, function3)
                 .always(function4)
-                .start();
+                .start();// start asynchronous operations
+
     }
 }

@@ -5,8 +5,8 @@ import org.riversun.promise.Func;
 import org.riversun.promise.Promise;
 
 /**
- * "java-promise"(https://github.com/riversun/java-promise)サンプル
- * ラムダ式を使わずに記述する
+ * Examples for "java-promise"(https://github.com/riversun/java-promise)
+ * Write code without lambda expression
  */
 public class Example02 {
 
@@ -31,7 +31,7 @@ public class Example02 {
                         }).start();
                     }
                 }))
-                .start();// 非同期処理開始
+                .start();// start asynchronous operations
         System.out.println("Promise in Java");
     }
 }
